@@ -14,11 +14,11 @@ class SendSMSAPIView(APIView):
     def post(self, request, *args, **kwargs):
         try:
             # Extract parameters from the request
-            SMPP_HOST = request.data.get('SMPP_HOST', 'smscsim.smpp.org')
-            SMPP_PORT = int(request.data.get('SMPP_PORT', 2775))
-            SYSTEM_ID = request.data.get('SYSTEM_ID', 'DefaultSystemID')
-            PASSWORD = request.data.get('PASSWORD', 'DefaultPassword')
-            SOURCE_ADDR = request.data.get('SOURCE_ADDR', 'MelroseLabs')
+            SMPP_HOST = request.data.get('SMPP_HOST', '10.26.140.160')
+            SMPP_PORT = int(request.data.get('SMPP_PORT', 5016))
+            SYSTEM_ID = request.data.get('SYSTEM_ID', 'NKaruna')
+            PASSWORD = request.data.get('PASSWORD', 'ktpl1220')
+            SOURCE_ADDR = request.data.get('SOURCE_ADDR', 'KRT_Alert')
             DESTINATION_ADDR = request.data.get('DESTINATION_ADDR')
             message = request.data.get('message', 'Hello World €$£')
 
@@ -35,3 +35,4 @@ class SendSMSAPIView(APIView):
         except Exception as e:
             logging.error(f"Error in SendSMSAPIView: {e}")
             return Response({'error': 'Failed to send SMS', 'details': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
